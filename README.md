@@ -1,2 +1,2 @@
-# MGT.-SYSTEM
-HOTEL MANAGEMENT &amp; RESERVATION SYSTEM MADE USING C++
+# RECORDS
+Records of booking of hotels by costumer maintanined using c++
