@@ -145,14 +145,145 @@ public:
    exit(0);
    }
    }
+  void menu :: edit_records(void)
+   {
+   int ch;
+   while(ch!=3)
+   {
+   clrscr();
+   gotoxy(34,4);
+   cout<<"EDIT";
+   gotoxy(30,8);
+   cout<<"1. ROOM RECORDS";
+   gotoxy(30,10); 
+   cout<<"2. COSTUMER RECORDS";
+   gotoxy(30,12); 
+   cout<<"3. BACK";
+   gotoxy(30,15);
+    
+   cout<<"Enter your choice:";
+   cin>>ch;
+   getch();
    
+   if(ch == 1)
+   {
+   roomf();
+   else
+   if(ch == 2)
+   costumerf();
+   else 
+   if(ch == 3)
+   main_menu();
+   }
+   }
+   void menu :: roomf(void)
+   {
+   int ch;
+   while(1)
+   {
+   clrscr();
+   gotoxy(34,4);
+   cout<<"EDIT ROOM";
+   gotoxy(30,8);
+   cout<<"1. ADD ROOM RECORDS";
+   gotoxy(30,10); 
+   cout<<"2. MODIFY ROOM RECORDS";
+   gotoxy(30,12); 
+   cout<<"2. DELETE ROOM RECORDS";
+   gotoxy(30,14);
+   cout<<"4. BACK";
+   gotoxy(30,17);
+    
+   cout<<"Enter your choice:";
+   cin>>ch;
+   getch();
    
+   if(ch == 1)
+   {
+   room r;
+   r.add();
+   }
+   else
+   if(ch == 2)
+   {
+   room r;
+   r.modify();
+   }
+   else 
+   if(ch == 3)
+   {
+   room r;
+   r.deletion();
+   }
+   else
+   if(ch == 4)
+   {break;
+   }
+   }
+   }
+     void menu :: costumerf(void)
+   {
+   int ch;
+   while(ch!=4)
+   {
+   clrscr();
+   gotoxy(34,4);
+   cout<<"EDIT COSTUMER";
+   gotoxy(30,8);
+   cout<<"1. ADD COSTUMER RECORDS";
+   gotoxy(30,10); 
+   cout<<"2. MODIFY COSTUMER RECORDS";
+   gotoxy(30,12); 
+   cout<<"2. DELETE COSTUMER RECORDS";
+   gotoxy(30,14);
+   cout<<"4. BACK";
+   gotoxy(30,17);
+    
+   cout<<"Enter your choice:";
+   cin>>ch;
+   getch();
    
+   if(ch == 1)
+   {
+   costumer c;
+   c.add();
+   }
+   else
+   if(ch == 2)
+   {
+   costumer c;
+   c.modify();
+   }
+   else 
+   if(ch == 3)
+   {
+   costumer c;
+   c.deletion();
+   }
+   else
+   if(ch == 4)
+   {
+   break;
+   }
+   }
+   }
    
-   
-   
-   
-   
+   void room::add(void)
+   {
+   char ch;
+   char x;
+   chat t_rcode[5];
+   int t_roomno;
+   char t_status;
+   float t_tariff;
+   do
+   {
+   fstream file;
+   file.open("ROOM.DAT", ios::out|ios::app);
+   clrscr();
+   gotoxy(1,1);
+   cout<<"Enter the details for the room";
+   gotoxy(1,3);
    
    
    
