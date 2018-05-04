@@ -284,7 +284,25 @@ public:
    gotoxy(1,1);
    cout<<"Enter the details for the room";
    gotoxy(1,3);
-   
+   cout<<"Code : " ;
+   gotoxy(1,4);
+   cout<<"Room no. :";
+   gotoxy(1,5);
+   cout<<"Status :";
+      gotoxy(1,6);
+   cout<<"Tariff :";
+      gotoxy(20,11);
+   cout<<"SS : SINGLE SUITE ";
+      gotoxy(20,12);
+   cout<<"DSS : DELUXE SUITE(single Bed)";
+      gotoxy(20,13);
+   cout<<"DSD :DELUXE SUITE(double Bed)";
+      gotoxy(20,14);
+   cout<<"PS :Presidential Suite";
+     int valid=0;
+      
+      
+      
    
    
    
