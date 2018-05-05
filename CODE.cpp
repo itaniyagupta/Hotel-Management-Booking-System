@@ -448,13 +448,309 @@ public:
             clreol();
          }
       }
+    while(valid!=1);
+      gotoxy(1,8);
+      cout<<"Do you want to save the record (y/n):";
       
-              
+      do
+      {
+         valid=1;
+         gotoxy(42,8);
+         cin>>ch;
+         getch();
+         ch=toupper(ch);
+         if(ch!='Y' && ch!='N')
+         {
+            valid= 0;
+            gotoxy(42,8);
+            clerol();
+         }
+      }
+      while(valid!=1);
+      if(ch== 'Y')
+      {
+         strcpy(roomcode, t_rcode):
+         roomno =t_roomno;
+         status=t_status;
+         tariff=t_tariff;
+         file.wtite((char*) this, size of (room));
+      }
+      gotoxy(1,9);
+      cout<<"Do you want to add more records(y/n):";
+      do
+      {
+         valid=1;
+         gotoxy(42,9);
+         cin>>ch;
+         getch();
+         ch= toupper(ch);
+         if(ch!= 'Y' && ch!= 'N')
+         {
+            valid=0;
+            gotoxy(42,9);
+            clreol();
+         }
+      }
+      while(valid!=1);
+      file.close();
+   }
+      while(ch== 'Y');
+   }
+     
+     
+     void room ::modify(void)  
+       { 
+        clrscr();
+        int valid;
+   char ch;
+   chat t_rcode[5];
+   int t_roomno, tr;
+   char t_status;
+   float t_tariff;
+   
+   gotoxy(1,3);
+   cout<<"Enter the room to be modified";
+        cin>>tr;
+        getch();
+        if(room_founnd(tr)!=1)
+        {
+         gotoxy(1,25);
+   clreol();
+   gotoxy(1,24);
+   cout<<"Room not found ";
+   gotoxy(1,25);
+   cout<<"Press any key to continue...";
+           getch();
+           return;
+        }
+        display_record(tr);
+      gotoxy(1,10);
+   cout<<"Do you want to modify this room record(y/n):";
+        do
+        { valid=1;
+         gotoxy(48,10);
+         cin>>ch;
+         getch();
+         ch=toupper(ch);
+         if(ch!='Y' && ch!='N')
+         { valid =0;
+          gotoxy(42,9);
+          clreol();
+         }
+        }
+        while(valid!=1);
+        if(ch=='N')
+           return;
+       gotoxy(1,12);
+   cout<<"Enter the new data for the room";
+      gotoxy(1,14);
+   cout<<"Code : ";
+      gotoxy(1,15);
+   cout<<"Room no. : ";
+      gotoxy(1,16);
+   cout<<"Status : ";
+        gotoxy(1,17);
+   cout<<"Tariff : ";
+      do
+      {
+         valid=1;
+         gotoxy(1,25);
+         cout<<"ENTER THE ROOM CODE (SS/DSS/DSD/PS)";
+         gotoxy(13,14);
+         gets(t_rcode);
+         int result;
+         char string[3], string1[3], string2[3], string3[3];
+         strcpy(string, "SS");
+          strcpy(string1, "DSS");
+          strcpy(string2, "DSD");
+          strcpy(string3, "PS");
+      if(strcmp(t_rcode, string)==0||strcmp(t_rcode, string1)==0)||strcmp(t_rcode, string2)==0)||strcmp(t_rcode, string3)==0)
+      {
+         result=0;
+      }
+         else
+         {
+            result=1;
+         }
          
+         if(result==1);
+         {
+            valid = 0;
+            gotoxy(1,25);
+            clerol();
+            gotoxy(1,24);
+            cout<<"INVALID CODE";
+            gotoxy(1,25);
+            cout<<"Press any key to continue.....";
+            getch();
+            gotoxy(1,24);
+            clreol();
+            gotoxy(1,25);
+            clerol();
+            gotoxy(13,14);
+            clreol();
+         }
+      }
+      while(valid==0); 
+      do{
+         valid=1;
+         gotoxy(1,25);
+         clreol();
+         gotoxy(1,25);
+        cout<<"ENTER THE ROOM NUMBER";
+         gotoxy(13,15);
+         cin>>t_roomno;
+         getch();
+         if(t_roomno <=0 || t_roomno>900)
+         {
+            valid =0; 
+            gotoxy(1,25);
+            clreol();
+            gotoxy(1,24);
+            cout<<"IT SHOULD NOT BE NEGATIVE OR ZERO OR GREATER THAN 900";
+            gotoxy(1,25);
+            cout<<"Press any key to continue...";
+            getch();
+            gotoxy(1,24);
+            clreol();
+            gotoxy(1,25);
+            clreol();
+            gotoxy(13,15);
+            clreol();
+         }
+         if(room_found(t_roomno) && t_roomno!=tr)
+         {
+            vlaid=0;
+            gotoxy(1,25);
+            clreol();
+            gotoxy(1,24);
+            cout<<"ROOM NO. ALREADY EXIST";
+            gotoxy(1,25);
+            cout<<"Press any key to continue...";
+            getch();
+            gotoxy(1,24);
+            clreol();
+            gotoxy(1,25);
+            clreol();
+            gotoxy(13,15);
+            clreol();
+         }
+      }
+      while(valid!=1);
+      do
+      {
+         valid=1;
+         gotoxy(1,25);
+         clreol();
+         gotoxy(1,25);
+         cout<<"ENTER THE ROOM STATUS : V=Vacant, O=Occupied";
+         gotoxy(13,16);
+         cin>>t_status;
+         t_status =  toupper(t_status);
+         if(t_status!= 'O' && t_status!='V')
+         {
+            valid-0;
+            gotoxy(1,25);
+            clreol();
+            gotoxy(1,24);
+            cout<<"INVALID DATA ENTERED";
+            gotoxy(1,25);
+            cout<<"Press any key to conitnue...";
+            getch();
+            gotoxy(1,24);
+            clreol();
+            gotoxy(1,25);
+            clreol();
+            gotoxy(13,16);
+            clreol();
+         }
+      }
+      while(valid!=1);
+      do
+      {
+         valid=1;
+         gotoxy(1,25);
+         clreol();
+         gotoxy(1,25);
+         cout<<"Enter the tariff for the room";
+         gotoxy(13,17);
+         cin>>t_tariff;
+         getch();
+         if(t_tariff <=0){
+            valid=0;
+            gotoxy(1,25);
+            clreol();
+            gotoxy(1,24);
+            cout<<"IT SHOULD NOT BE NAGTIVE OR ZERO";
+            gotoxy(1,25);
+            cout<<"press any key to conitnue....";
+            getch();
+            gotoxy(1,24);
+            clreol();
+            gotoxy(1,25);
+            clreol();
+            gotoxy(13,17);
+            clreol();
+         }
+      }
+    while(valid!=1);
+      gotoxy(1,19);
+      cout<<"Do you want to save the record (y/n):";
       
+      do
+      {
+         valid=1;
+         gotoxy(42,19);
+         cin>>ch;
+         getch();
+         ch=toupper(ch);
+         if(ch!='Y' && ch!='N')
+         {
+            valid= 0;
+            gotoxy(42,19);
+            clerol();
+         }
+      }
+      while(valid!=1);
+      if(ch== 'Y')
+      {
+         fstream file;
+         file.open("ROOM.DAT", ios::in);
+         fstream temp;
+         temp.open("temp.dat", ios::out);
+         while(!file.eof())
+         {
+            file.read((char*) this, sizeof(room));
+            if (roomno == tr)
+            {
+         strcpy(roomcode, t_rcode):
+         roomno =t_roomno;
+         status=t_status;
+         tariff=t_tariff;
+         temp.wtite((char *) this, size of (room));
+            }
+            else
+            {
+               temp.wtite((char *) this, size of (room));
+            }
+      }
+         file.close();
+         temp.close();
+         file.open("ROOM.DAT", ios::out);
+         temp.open("temp.DAT", ios::in);
+         temp.seekg(0);
+         while(!temp.eof())
+         {
+            temp.read((char *) this, sizeof(room));
+            file.write((char *)this. sizeof(room));
+         }
+         file.close();
+         temp.close();
+         remove("temp.dat");
+      }
+     }
+     
       
-   
-   
    
    
    
