@@ -300,7 +300,130 @@ public:
       gotoxy(20,14);
    cout<<"PS :Presidential Suite";
      int valid=0;
+      do
+      {
+         valid=1;
+         gotoxy(1,25);
+         cout<<"ENTER THE ROOM CODE (SS/DSS/DSD/PS)";
+         gotoxy(13,3);
+         gets(t_rcode);
+         int result;
+         char string[3], string1[3], string2[3], string3[3];
+         strcpy(string, "SS");
+          strcpy(string1, "DSS");
+          strcpy(string2, "DSD");
+          strcpy(string3, "PS");
+      if(strcmp(t_rcode, string2)==0||strcmp(t_rcode, string3)==0)
+      {
+         result=0;
+      }
+         else
+         {
+            result=1;
+         }
+         
+         if(result==1);
+         {
+            valid = 0;
+            gotoxy(1,25);
+            clerol();
+            gotoxy(1,24);
+            cout<<"INVALID CODE";
+            gotoxy(1,25);
+            cout<<"Press any key to continue.....";
+            getch();
+            gotoxy(1,24);
+            clreol();
+            gotoxy(1,25);
+            clerol();
+            gotoxy(13,3);
+            clreol();
+         }
+      }
+      while(valid==0);
+      for(int i=11; i<=14; i++)
+      {
+         gotoxy(1,i);
+         clreol();
+      }
       
+      do{
+         valid=1;
+         gotoxy(1,25);
+         clreol();
+         gotoxy(1,25);
+        cout<<"ENTER THE ROOM NUMBER";
+         gotoxy(13,4);
+         cin>>t_roomno;
+         getch();
+         if(t_roomno <=0 || t_roomno>900)
+         {
+            valid =0; 
+            gotoxy(1,25);
+            clreol();
+            gotoxy(1,24);
+            cout<<"IT SHOULD NOT BE NEGATIVE OR ZERO OR GREATER THAN 900";
+            gotoxy(1,25);
+            cout<<"Press any key to continue...";
+            getch();
+            gotoxy(1,24);
+            clreol();
+            gotoxy(1,25);
+            clreol();
+            gotoxy(13,4);
+            clreol();
+         }
+         if(room_found(t_roomno))
+         {
+            vlaid=0;
+            gotoxy(1,25);
+            clreol();
+            gotoxy(1,24);
+            cout<<"ROOM NO. ALREADY EXIST";
+            gotoxy(1,25);
+            cout<<"Press any key to continue...";
+            getch();
+            gotoxy(1,24);
+            clreol();
+            gotoxy(1,25);
+            clreol();
+            gotoxy(13,4);
+            clreol();
+         }
+      }
+      while(valid!=1);
+      do
+      {
+         valid=1;
+         gotoxy(1,25);
+         clreol();
+         gotoxy(1,25);
+         cout<<"ENTER THE ROOM STATUS : V=Vacant, O=Occupied";
+         gotoxy(13,5);
+         cin>>t_status;
+         t_status =  toupper(t_status);
+         if(t_status!= 'O' && t_status!='V')
+         {
+            valid-0;
+            gotoxy(1,25);
+            clreol();
+            gotoxy(1,24);
+            cout<<"INVALID DATA ENTERED";
+            gotoxy(1,25);
+            cout<<"Press any key to conitnue...";
+            getch();
+            gotoxy(1,24);
+            clreol();
+            gotoxy(1,25);
+            clreol();
+            gotoxy(13,5);
+            clreol();
+         }
+      }
+      
+            
+              
+         
       
       
    
