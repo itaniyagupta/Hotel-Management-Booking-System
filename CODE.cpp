@@ -1232,3 +1232,115 @@ public:
       }
          m1.main_menu();
       }
+
+     
+     
+     
+     
+     void costumer ::modify(void)  
+       { 
+        clrscr();
+        room r;
+        int valid;
+   char ch;
+   int t_roomno, tr;
+        char t_name[21], t_phone[8];
+   float t_advance, t_misc, t_room_srv;
+   fstream  file;
+        file.open("COSTUMER.DAT", ios :: ate);
+        
+   gotoxy(1,3);
+   cout<<"Enter the room no of the costumer to be modified";
+        cin>>tr;
+        getch();
+        char t_status;
+        t_status = r.room_status(tr);
+        if(!r.room_found(tr)||t_status== 'V')
+        {
+         gotoxy(1,25);
+   clreol();
+   gotoxy(1,24);
+   cout<<"Room not found or vacant ";
+   gotoxy(1,25);
+   cout<<"Press any key to continue...";
+           getch();
+           return;
+        }
+        display_record(tr);
+      gotoxy(1,12);
+   cout<<"Do you want to modify this room record(y/n):";
+        do
+        { valid=1;
+         gotoxy(48,12);
+         cin>>ch;
+         getch();
+         ch=toupper(ch);
+         if(ch!='Y' && ch!='N')
+         { valid =0;
+          gotoxy(42,12);
+          clreol();
+         }
+        }
+        
+        while(!valid);
+        if(ch=='N')
+           return;
+       gotoxy(1,14);
+   cout<<"Enter the new data for the costumer";
+      gotoxy(1,16);
+   cout<<"Room no. : ";
+      gotoxy(1,17);
+   cout<<"Name : ";
+        gotoxy(1,18);
+   cout<<"Phone : ";
+        gotoxy(1,19);
+   cout<<"Advance : ";
+        gotoxy(1,20);
+   cout<<"Miscellaneous : ";
+        gotoxy(1,21);
+   cout<<"Room Service : ";
+      do{
+         valid=1;
+         gotoxy(1,25);
+         clreol();
+         gotoxy(1,25);
+        cout<<"ENTER THE ROOM NUMBER for the costumer";
+         gotoxy(20,16);
+         cin>>t_roomno;
+         getch();
+         t_status = r.room_status(t_roomno);
+         
+         if((!r.room_found(t_roomno)) || (r.room_found(t_roomno) && t_roomno!=tr && t_status == 'O'))
+         {
+            valid =0; 
+            gotoxy(1,25);
+            clreol();
+            gotoxy(1,24);
+            cout<<"ROOM NO NOT EXIST OR NOT VACANT";
+            gotoxy(1,25);
+            cout<<"Press any key to continue...";
+            getch();
+            gotoxy(1,24);
+            clreol();
+            gotoxy(1,25);
+            clreol();
+            gotoxy(20,16);
+            clreol();
+         }
+      }
+      while(!valid);
+      do
+      {
+         valid=1;
+         gotoxy(1,25);
+         clreol();
+         gotoxy(1,25);
+         cout<<"ENTER THE NAME OF THE COSTUMER:";
+         gotoxy(20,17);
+         gets(t_name);
+         getch();
+         strupr(t_name);
+         fflush(stdin);
+         if((strlen(t_name) <= 0) ||(strlen(t_name) > 20))
+         {
+            
