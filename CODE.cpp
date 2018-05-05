@@ -420,8 +420,35 @@ public:
             clreol();
          }
       }
+      while(valid!=1);
+      do
+      {
+         valid=1;
+         gotoxy(1,25);
+         clreol();
+         gotoxy(1,25);
+         cout<<"Enter the tariff for the room";
+         gotoxy(13,6);
+         cin>>t_tariff;
+         getch();
+         if(t_tariff <=0){
+            valid=0;
+            gotoxy(1,25);
+            clreol();
+            gotoxy(1,24);
+            cout<<"IT SHOULD NOT BE NAGTIVE OR ZERO";
+            gotoxy(1,25);
+            cout<<"press any key to conitnue....";
+            getch();
+            gotoxy(1,24);
+            clreol();
+            gotoxy(1,25);
+            clreol();
+            gotoxy(13,6);
+            clreol();
+         }
+      }
       
-            
               
          
       
