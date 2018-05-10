@@ -1343,4 +1343,269 @@ public:
          fflush(stdin);
          if((strlen(t_name) <= 0) ||(strlen(t_name) > 20))
          {
-            
+            valid = 0;
+            gotoxy(1,25) ;
+            clreol();
+            gotoxy(1,24);
+            cout<<"LENGTH SHOULD NOT BE ZERO OR GREATER THAN 20";
+            gotoxy(1,25);
+            cout<<"Press any key to continue....";
+            getch();
+            gotoxy(1,24);
+            clreol();
+            gotoxy(1,25);
+            clreol();
+            gotoxy(20,17);
+            clreol();
+         }
+      }
+        while(!valid);
+        do
+        {
+           valid=1;
+           gotoxy(1,25);
+           clreol();
+           gotoxy(1,25);
+           cout<<"ENTER THE PHONE NO. OF THE CUSTOMER, ENTER '_' FOR NO PHONE NO.";
+           gotoxy(20,18);
+           cin>>t_phone;
+           if((strlen(t_phone) < 8 && strlen(t_phone) > 1) || (strlen(t_phone) > 8))
+           {
+              valid = 0;
+              gotoxy(1, 25);
+              clreol();
+              gotoxy(1, 24);
+              cout<<"Length should not less than 8 or greater than 8";
+              gotoxy(1,25);
+              cout<<"Press any key to continue.....";
+              getch();
+              gotoxy(1, 24);
+              clreol();
+              gotoxy(1, 25);
+              clreol();
+              gotoxy(20,18);
+              clreol();
+           }
+        }
+        while( !valid);
+        do
+        {
+           valid =1 ;
+           gotoxy(1,25);
+           clreol();
+           gotoxy(1,25);
+           cout<<"ENTER THE ADVANCE RS. ";
+           gotoxy(20,19);
+           cin>>t_advance;
+           getch();
+           if(t_advance < 0)
+           {
+              valid = 0;
+              gotoxy(1,25);
+              clreol();
+              gotoxy(1,24);
+              cout<<"SHOULD NOT LESS THAN ZERO ";
+              gotoxy(1,25);
+              cout<<"Press any key to continue.....";
+              getch();
+              gotoxy(1,24);
+              clreol();
+              gotoxy(1,25);
+              clreol();
+              gotoxy(20,19);
+              clreol();
+           }
+        }
+        while(!valid);
+        do
+        {
+           valid = 1;
+           gotoxy(1,25);
+           clreol();
+           gotoxy(1, 25);
+           cout<<"ENTER THE MISCELLANEOUS CHARGES";
+           gotoxy(20,20) ;
+           cin>>t_misc;
+           getch();
+           if(t_misc <0)
+           {
+              valid=0;
+              gotoxy(1,25);
+              clreol();
+              gotoxy(1,24);
+              cout<<"SHOULD NOT LESS THAN ZERO";
+              gotoxy(1,25);
+              cout<<"Press any key to continue....";
+              getch();
+              gotoxy(1,24);
+              clreol();
+              gotoxy(1,25);
+              clreol();
+              gotoxy(20,20);
+              clreol();
+           }
+        }
+        while(!valid);
+        do
+        {
+           valid=1;
+           gotoxy(1,25);
+           clreol();
+           gotoxy(1,25);
+           cout<<"ENTER THE ROOM SERVICE CHARGES ";
+           gotoxy(20,21);
+           cin>>t_room_srv;
+           getch();
+           if(t_room_srv < 0)
+           {
+              valid = 0;
+              gotoxy(1,25);
+              clreol();
+              gotoxy(1,24);
+              cout<<" SHOULD NOT LESS THAN ZERO";
+              gotoxy(1,25);
+              cout<<"Press any key to contine...";
+              getch();
+              gotoxy(1,24);
+              clreol();
+              gotoxy(1,25);
+              clreol();
+              gotoxy(20,21);
+              clreol();
+           }
+        }
+        while(!valid);
+        gotoxy(1,23);
+        cout<<"Do you want to save the record (y/n):";
+        do
+        {
+           valid =1;
+           gotoxy(42,23);
+           cin>>ch;
+           getch();
+           ch=toupper(ch);
+           if( ch! = 'Y' && ch! = 'N')
+           {
+              valid = 0;
+              gotoxy(42,23);
+              clreol();
+           }
+        }
+        while(!valid);
+        if(ch== 'Y')
+        {
+           if(t_roomno !=tr)
+           {
+              r.change_status(t_roomno, 'O');
+              r.change_status(tr, 'V');
+           }
+           int  recno;
+           recno=recordno(tr);
+           int location;
+           location = (recno -1)* sizeof(costumer);
+           file.skeep(location);
+           roomno = t_roomno;
+           strcpy(name, t_name);
+           strcpy(phone, t_name);
+           room_srv = t_room_srv;
+           advance = t_advance;
+           misc=t_misc;
+           file.write((char *) this, sizeof(customer));
+        }
+        file.close();
+     }
+     void customer :: delete_record(int t_roomno)
+     {
+        fstream file;
+        file.open("CUSTOMER.DAT", ios::in);
+        fstream temp;
+        temp.open("temp.dat" , ios::out);
+        while(!file.eof())
+        {
+           file.read((char *) this, sizeof(customer));
+           if(file.eof() )
+           break;
+           if(roomno ! = t_roomno)
+              temp.write((char  *) this, sizeof(costumer));
+        }
+        file.close();
+        temp.close();
+        file.open("COSTUMER.DAT" , ios::out);
+        temp.open("temp.dat" , ios::in);
+        temp.seekg(0);
+        while(!temp.eof())
+        {
+           temp.read((char *) this, sizeof(customer));
+           if(temp.eof())
+              break;
+           file.write((char *)this, sizeof(customer));
+        }
+        file.close();
+        temp.close();
+     }
+     void customer :: deletion(void)
+     {
+        clrscr();
+        room r;
+        int valid;
+        char ch;
+        int t_roomno;
+        gotoxy(1,3);
+        cout<<"Enter the room no. of the customer to be deleted";
+        cin>>t_roomno;
+        char t_status;
+        t_status = r.room_status(t_roomno);
+        if(!r.romm_found(t_roomno) ||t_status == 'V')
+        {
+           gotoxy(1,25);
+           clreol();
+           gotoxy(1,24);
+           cout<<"ROOM NO. NOT FOUND OR ROOM IS VACANT";
+           gotoxy(1,25);
+           cout<<"Press any key to continue...";
+           getch();
+          return;
+        }
+        display_record(t_roomno);
+        gotoxy(1,15);
+        cout<<"Do you want to delete this Costumer Record (y/n):";
+        do
+        {
+           valid=1;
+           gotoxy(52,15);
+           cin>>ch;
+           getch();
+           ch = toupper(ch);
+           if(ch! = 'Y' && ch!='N')
+           {
+              valid = 0;
+              gotoxy(52,15);
+              clreol();
+           }
+        }
+        while(!valid);
+        if (ch== 'N')
+           return;
+        r.change_status(t_roomno, 'V');
+        delete_record(t_roomno);
+     }
+     
+     char room :: room_status(int t_roomno)
+     {
+        
+       
+           
+     
+          
+              
+         
+        
+              
+              
+              
+              
+              
+              
+              
+              
+    
