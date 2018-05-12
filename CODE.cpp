@@ -1592,6 +1592,134 @@ public:
      
      char room :: room_status(int t_roomno)
      {
+        fstream file;
+        file.open("ROOM.DAT", ios::in);'
+        file.seekg(0);
+        int found = 0;
+        char t_status;
+        while (file.read((char *) this, sizeof(room)) && !found)
+        {
+           if(t_roomno == roomno)
+           {
+              found =1;
+              t_status = status;
+           }
+        }
+        file.close();
+        return t_status;
+     }
+      void room :: change_status(int t_roomno, char t_status)
+      {
+         int recno;
+         recno = recordno(t_roomno);
+         fstream file;
+         file.open("ROOM.DAT", ios::out | ios::ate);
+         int location;
+         location = (recno-1) * sizeof(room);
+         file.skeep(location);
+         status = t_status;
+         file.write((char *) this, sizeof(room);
+                    file.close();
+                    }
+                    
+                    void costumer :: display_record(int t_roomno)
+                    {
+                       fstream file;
+                       file.open("COSTUMER.DAT", ios::in);
+                       file.seekg(0);
+                       int found = 0;
+                       while(file.read((char *) this, sizeof(customer)) && !found)
+                       {
+                          if(t_roomno == roomno)
+                          {
+                             found =1;
+                             gotoxy(1,5);
+ cout<<"Room no. : " <<roomno;
+      gotoxy(1,6);
+   cout<<"Customer Name : "<<name;
+        gotoxy(1,7);
+   cout<<"Phone no. : "<<phone;
+        gotoxy(1,8);
+   cout<<"Advance : "<<advance;
+        gotoxy(1,9);
+   cout<<"Miscellaneous : "<<misc;
+        gotoxy(1,10);
+   cout<<"Room Service : "<<room_srv;
+                          }
+                       }
+                       file.close();
+                    }
+                    void customer :: display_customer_record(int t_roomno)
+                    {
+                       fstream file;
+                       file.open("COSTUMER.DAT", ios::in);
+                       file.seekg(0);
+                       int found = 0;
+                       while(file.read((char *) this, sizeof(customer)) && !found)
+                       {
+                          if(t_roomno == roomno)
+                          {
+                             found = 1;
+                             gotoxy(1,5);
+                             cout<<"Room no. : " <<roomno;
+      gotoxy(1,6);
+   cout<<"Customer Name : "<<name;
+        gotoxy(1,7);
+   cout<<"Phone no. : "<<phone;
+        gotoxy(1,8);
+   cout<<"Advance : "<<advance;
+        gotoxy(1,9);
+   cout<<"Miscellaneous charges : "<<misc;
+        gotoxy(1,10);
+   cout<<"Room Service charges : "<<room_srv;
+                          }
+                       }
+                       file.close();
+                    }
+                    
+                    int costumer :: recordno(int t_roomno)
+                    {
+                       fstream file;
+                       file.open("COSTUMER.DAT", ios::in);
+                       file.seekg(0);
+                       int found = 0;
+                       while(file.read((char *) this, sizeof(customer)))
+                       { count++;
+                        if(t_roomno == roomno)
+                           break;
+                       }
+                       file.close();
+                       return count;
+                    }
+                    int room :: recordno(int t_roomno)
+                    {
+                       fstream file;
+                       file.open("ROOM.DAT", ios::in);
+                       file.seekg(0);
+                       int found = 0;
+                       while(file.read((char *) this, sizeof(customer)))
+                       { count++;
+                        if(t_roomno == roomno)
+                           break;
+                       }
+                       file.close();
+                       return count;
+                    }
+                    void main(void)
+                    {
+                       clrscr();
+                       menu m;
+                       textcode(C80);
+                       textbackground(WHITE);
+                       textcolor(RED);
+                       m.main_menu();
+                       getch();
+                    }
+                    
+                    
+                          
+                       
+        
         
        
            
